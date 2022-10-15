@@ -18,17 +18,13 @@ func (t Trigram) String() string {
 	return string([]rune(t[:]))
 }
 
-func (t Trigram) MarshalText() ([]byte, error) {
-	return []byte(t.String()), nil
-}
-
-func (t Trigram) Less(p Trigram) bool {
-	if t[0] < p[0] {
+func trigramLess(a, b Trigram) bool {
+	if a[0] < b[0] {
 		return true
-	} else if t[1] < p[1] {
+	} else if a[1] < b[1] {
 		return true
 	}
-	return t[2] < p[2]
+	return a[2] < b[2]
 }
 
 func countTrigrams(in []byte, freqs map[Trigram]int) {
@@ -93,7 +89,7 @@ func (ts trigramSorter) Less(i, j int) bool {
 
 	// sort equal counts lexicographically
 	if ci == cj {
-		return ti.Less(tj)
+		return trigramLess(ti, tj)
 	}
 
 	// sort unequal counts descending
