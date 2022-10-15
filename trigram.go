@@ -19,12 +19,13 @@ func (t Trigram) String() string {
 }
 
 func trigramLess(a, b Trigram) bool {
-	if a[0] < b[0] {
-		return true
-	} else if a[1] < b[1] {
-		return true
+	if a[0] == b[0] {
+		if a[1] == b[1] {
+			return a[2] < b[2]
+		}
+		return a[1] < b[1]
 	}
-	return a[2] < b[2]
+	return a[0] < b[0]
 }
 
 func countTrigrams(in []byte, freqs map[Trigram]int) {
