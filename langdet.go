@@ -17,6 +17,11 @@ type Languages struct {
 	Languages  []Language
 }
 
+type Options struct {
+	Scripts   []*unicode.RangeTable
+	Languages map[*unicode.RangeTable]Languages
+}
+
 type Result struct {
 	Tag        language.Tag
 	Confidence float64
@@ -36,16 +41,15 @@ func (rs resultSorter) Swap(i, j int) {
 	rs[i], rs[j] = rs[j], rs[i]
 }
 
-func DetectLanguageOptions(b []byte, scripts []*unicode.RangeTable,
-	langset map[*unicode.RangeTable]Languages) []Result {
+func DetectLanguageOptions(b []byte, options Options) []Result {
 	// detect the script
-	script := DetectScript(b, scripts)
+	script := DetectScript(b, options.Scripts)
 	if script == nil {
 		return nil
 	}
 
 	// get the language set
-	langs, ok := langset[script]
+	langs, ok := options.Languages[script]
 	if !ok {
 		return nil
 	}
@@ -82,7 +86,7 @@ func DetectLanguageOptions(b []byte, scripts []*unicode.RangeTable,
 }
 
 func DetectLanguage(b []byte) []Result {
-	return DetectLanguageOptions(b, DefaultScripts, DefaultLanguages)
+	return DetectLanguageOptions(b, DefaultOptions)
 }
 
 func Train(b []byte) []Trigram {

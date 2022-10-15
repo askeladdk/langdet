@@ -81,7 +81,7 @@ func TestDetectScript(t *testing.T) {
 		},
 	} {
 		t.Run(testcase.Name, func(t *testing.T) {
-			got := DetectScript([]byte(testcase.Text), DefaultScripts)
+			got := DetectScript([]byte(testcase.Text), DefaultOptions.Scripts)
 			if got != testcase.Script {
 				t.Error()
 			}
@@ -102,6 +102,6 @@ func BenchmarkDetectScript(b *testing.B) {
 	internet, _ := readFile("testfiles/internet.txt")
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_ = DetectScript(internet, DefaultScripts)
+		_ = DetectScript(internet, DefaultOptions.Scripts)
 	}
 }
