@@ -23,7 +23,7 @@ func DetectScript(b []byte, scripts []*unicode.RangeTable) *unicode.RangeTable {
 			break
 		}
 
-		if isStopChar(r) {
+		if !unicode.IsLetter(r) {
 			continue
 		}
 
@@ -55,9 +55,4 @@ func DetectScript(b []byte, scripts []*unicode.RangeTable) *unicode.RangeTable {
 	}
 
 	return scripts[best]
-}
-
-func isStopChar(r rune) bool {
-	return r == unicode.ReplacementChar || unicode.IsSymbol(r) ||
-		unicode.IsSpace(r) || unicode.IsPunct(r) || unicode.IsDigit(r)
 }
