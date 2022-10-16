@@ -41,27 +41,22 @@ func (rs resultSorter) Swap(i, j int) {
 	rs[i], rs[j] = rs[j], rs[i]
 }
 
-func DetectLanguageOptions(b []byte, options Options) []Result {
+func DetectLanguageWithOptions(b []byte, options Options) []Result {
 	// detect the script
 	script := DetectScript(b, options.Scripts)
 	if script == nil {
-		return nil
+		return []Result{{}}
 	}
 
 	// get the language set
 	langs, ok := options.Languages[script]
 	if !ok {
-		return nil
+		return []Result{{}}
 	}
 
 	// some languages are defined by their script
 	if len(langs.Languages) == 0 {
-		return []Result{
-			{
-				Tag:        langs.DefaultTag,
-				Confidence: 1,
-			},
-		}
+		return []Result{{Tag: langs.DefaultTag, Confidence: 1}}
 	}
 
 	// build and rank the trigrams of the document
@@ -86,7 +81,7 @@ func DetectLanguageOptions(b []byte, options Options) []Result {
 }
 
 func DetectLanguage(b []byte) []Result {
-	return DetectLanguageOptions(b, DefaultOptions)
+	return DetectLanguageWithOptions(b, DefaultOptions)
 }
 
 func Train(b []byte) []Trigram {
