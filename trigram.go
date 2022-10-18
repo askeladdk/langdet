@@ -42,23 +42,14 @@ func countTrigrams(in []byte, freqs map[Trigram]int) {
 			return
 		}
 
-		if unicode.IsDigit(r) {
-			continue
-		}
-
-		if unicode.IsPunct(r) {
+		switch {
+		case unicode.IsPunct(r):
 			if r == '.' {
 				r = '_'
-			} else {
-				continue
 			}
-		}
-
-		if unicode.IsSpace(r) {
+		case unicode.IsSpace(r):
 			r = '_'
-		}
-
-		if r != '_' {
+		case unicode.IsLetter(r):
 			if prev == '_' {
 				t.shift('_')
 				freqs[t]++

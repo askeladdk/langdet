@@ -13,8 +13,8 @@ var (
 	LatinTag            = language.Make("la")
 	LuxembourgishTag    = language.Make("lb")
 	MalteseTag          = language.Make("mt")
-	NorwegianBokmalTag  = language.Make("nb")
-	NorwegianNyNorskTag = language.Make("nn")
+	NorwegianBokmålTag  = language.Make("nb")
+	NorwegianNynorskTag = language.Make("nn")
 )
 
 var DefaultOptions = Options{
@@ -54,8 +54,8 @@ var DefaultOptions = Options{
 				Lithuanian,
 				Luxembourgish,
 				Maltese,
-				NorwegianBokmal,
-				NorwegianNyNorsk,
+				NorwegianBokmål,
+				NorwegianNynorsk,
 				Polish,
 				Portuguese,
 				Romanian,
