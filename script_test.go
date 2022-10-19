@@ -1,9 +1,6 @@
 package langdet
 
 import (
-	_ "embed"
-	"io"
-	"os"
 	"testing"
 	"unicode"
 )
@@ -83,25 +80,8 @@ func TestDetectScript(t *testing.T) {
 		t.Run(testcase.Name, func(t *testing.T) {
 			got := DetectScript([]byte(testcase.Text), DefaultOptions.Scripts)
 			if got != testcase.Script {
-				t.Error()
+				t.Error("got", got, "but expected", testcase.Script)
 			}
 		})
-	}
-}
-
-func readFile(filename string) ([]byte, error) {
-	f, err := os.Open(filename)
-	if err != nil {
-		return nil, err
-	}
-	defer f.Close()
-	return io.ReadAll(f)
-}
-
-func BenchmarkDetectScript(b *testing.B) {
-	internet, _ := readFile("testfiles/internet.txt")
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		_ = DetectScript(internet, DefaultOptions.Scripts)
 	}
 }

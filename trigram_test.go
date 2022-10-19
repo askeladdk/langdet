@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func newTrigram(s string) Trigram {
+func trigram(s string) Trigram {
 	r := []rune(s)
 	return Trigram{r[0], r[1], r[2]}
 }
@@ -13,46 +13,50 @@ func TestCountTrigrams(t *testing.T) {
 	test := "De kat krabt de krullen van de trap."
 
 	expected := map[Trigram]int{
-		newTrigram("__d"): 1,
-		newTrigram("_de"): 3,
-		newTrigram("_ka"): 1,
-		newTrigram("_kr"): 2,
-		newTrigram("_tr"): 1,
-		newTrigram("_va"): 1,
-		newTrigram("abt"): 1,
-		newTrigram("an_"): 1,
-		newTrigram("at_"): 1,
-		newTrigram("bt_"): 1,
-		newTrigram("de_"): 3,
-		newTrigram("e_k"): 2,
-		newTrigram("e_t"): 1,
-		newTrigram("en_"): 1,
-		newTrigram("kat"): 1,
-		newTrigram("kra"): 1,
-		newTrigram("kru"): 1,
-		newTrigram("len"): 1,
-		newTrigram("lle"): 1,
-		newTrigram("n_d"): 1,
-		newTrigram("n_v"): 1,
-		newTrigram("rab"): 1,
-		newTrigram("rap"): 1,
-		newTrigram("rul"): 1,
-		newTrigram("t_d"): 1,
-		newTrigram("t_k"): 1,
-		newTrigram("tra"): 1,
-		newTrigram("ull"): 1,
-		newTrigram("van"): 1,
-		newTrigram("ap_"): 1,
+		trigram("__d"): 1,
+		trigram("_de"): 3,
+		trigram("_ka"): 1,
+		trigram("_kr"): 2,
+		trigram("_tr"): 1,
+		trigram("_va"): 1,
+		trigram("abt"): 1,
+		trigram("an_"): 1,
+		trigram("at_"): 1,
+		trigram("bt_"): 1,
+		trigram("de_"): 3,
+		trigram("e_k"): 2,
+		trigram("e_t"): 1,
+		trigram("en_"): 1,
+		trigram("kat"): 1,
+		trigram("kra"): 1,
+		trigram("kru"): 1,
+		trigram("len"): 1,
+		trigram("lle"): 1,
+		trigram("n_d"): 1,
+		trigram("n_v"): 1,
+		trigram("rab"): 1,
+		trigram("rap"): 1,
+		trigram("rul"): 1,
+		trigram("t_d"): 1,
+		trigram("t_k"): 1,
+		trigram("tra"): 1,
+		trigram("ull"): 1,
+		trigram("van"): 1,
+		trigram("ap_"): 1,
 	}
 
 	counts := make(map[Trigram]int, 300)
 
 	countTrigrams([]byte(test), counts)
 
-	assertFalse(t, len(counts) != len(expected), "wrong number of trigrams")
+	if len(counts) != len(expected) {
+		t.Error("wrong number of trigrams")
+	}
 
 	for k, v := range counts {
-		assertFalse(t, expected[k] != v, "wrong count")
+		if expected[k] != v {
+			t.Error("wrong count for", k)
+		}
 	}
 }
 
@@ -108,7 +112,9 @@ func TestTrigramDistance(t *testing.T) {
 	} {
 		t.Run(testcase.Name, func(t *testing.T) {
 			dist := distance(trigrams, testcase.Document)
-			assertFalse(t, dist != testcase.Distance, "incorrect distance")
+			if dist != testcase.Distance {
+				t.Error("got", dist, "but expected", testcase.Distance)
+			}
 		})
 	}
 }

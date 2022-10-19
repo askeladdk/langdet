@@ -20,8 +20,8 @@ type Languages struct {
 type Options struct {
 	Scripts          []*unicode.RangeTable
 	Languages        map[*unicode.RangeTable]Languages
-	MinRelConfidence float64
 	MinConfidence    float64
+	MinRelConfidence float64
 }
 
 type Result struct {
