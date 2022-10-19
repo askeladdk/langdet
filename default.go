@@ -6,6 +6,7 @@ import (
 	"golang.org/x/text/language"
 )
 
+// Tags for languages missing from golang.org/x/text/language.
 var (
 	BelarusianTag       = language.Make("be")
 	BosnianTag          = language.Make("bs")
@@ -24,6 +25,8 @@ var (
 	TibetanTag          = language.Make("bo")
 )
 
+// DefaultOptions is a default set of options that detects
+// the most commonly used languages worldwide.
 var DefaultOptions = Options{
 	Languages: map[*unicode.RangeTable]Languages{
 		unicode.Arabic: {

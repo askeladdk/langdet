@@ -7,25 +7,49 @@ import (
 	"golang.org/x/text/language"
 )
 
+// Language profiles a natural language.
 type Language struct {
-	Tag      language.Tag
+	// Tag is the BCP 47 language tag.
+	Tag language.Tag
+
+	// Trigrams is the trigrams profile created by Train.
 	Trigrams []Trigram
 }
 
+// Languages is a set of languages that share the same writing script.
 type Languages struct {
+	// DefaultTag is the default language tag used if Languages is empty.
 	DefaultTag language.Tag
-	Languages  []Language
+
+	// Languages is the set of languages sharing the same writing script.
+	// If this is empty or nil, the detected language is always DefaultTag.
+	Languages []Language
 }
 
+// Options configures the language detector.
 type Options struct {
-	Scripts          []*unicode.RangeTable
-	Languages        map[*unicode.RangeTable]Languages
-	MinConfidence    float64
+	// Scripts is the set of writing scripts to detect.
+	Scripts []*unicode.RangeTable
+
+	// Languages maps writing systems to a set of languages.
+	Languages map[*unicode.RangeTable]Languages
+
+	// MinConfidence is the minimum confidence that must be met
+	// before DetectLanguage returns the detected language.
+	MinConfidence float64
+
+	// MinRelConfidence is the minimum confidence difference
+	// that must be met between detected languages.
+	// Languages that do not meet the mimimum are filtered from the result.
 	MinRelConfidence float64
 }
 
+// Result holds a detected language and confidence.
 type Result struct {
-	Tag        language.Tag
+	// Tag is the detected language.
+	Tag language.Tag
+
+	// Confidence is the probability that this language is correct, between 0 and 1.
 	Confidence float64
 }
 
@@ -43,6 +67,10 @@ func (rs resultSorter) Swap(i, j int) {
 	rs[i], rs[j] = rs[j], rs[i]
 }
 
+// DetectLanguageWithOptions detects the language of b configured by options
+// and returning a set of candidate languages ordered by confidence level.
+//
+// DetectLanguageWithOptions always returns at least one result.
 func DetectLanguageWithOptions(b []byte, options Options) []Result {
 	// detect the script
 	script := DetectScript(b, options.Scripts)
@@ -100,6 +128,8 @@ func DetectLanguageWithOptions(b []byte, options Options) []Result {
 	return res
 }
 
+// DetectLanguage is a shorthand that calls DetectLanguageWithOptions
+// with the default options and returns the best detected language.
 func DetectLanguage(b []byte) language.Tag {
 	return DetectLanguageWithOptions(b, DefaultOptions)[0].Tag
 }
