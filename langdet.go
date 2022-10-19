@@ -18,8 +18,10 @@ type Languages struct {
 }
 
 type Options struct {
-	Scripts   []*unicode.RangeTable
-	Languages map[*unicode.RangeTable]Languages
+	Scripts          []*unicode.RangeTable
+	Languages        map[*unicode.RangeTable]Languages
+	MinRelConfidence float64
+	MinConfidence    float64
 }
 
 type Result struct {
@@ -77,11 +79,29 @@ func DetectLanguageWithOptions(b []byte, options Options) []Result {
 
 	sort.Sort(resultSorter(res))
 
+	// return default tag if confidence is too low
+	if res[0].Confidence < options.MinConfidence {
+		return []Result{{Tag: langs.DefaultTag}}
+	}
+
+	// filter languages that have less than the min relative confidence difference
+	if len(res) > 1 && options.MinRelConfidence > 0 {
+		res2 := res[:1]
+		conf := res[0].Confidence
+		for _, r := range res[1:] {
+			if options.MinRelConfidence < conf-r.Confidence {
+				res2 = append(res2, r)
+				conf = r.Confidence
+			}
+		}
+		return res2
+	}
+
 	return res
 }
 
-func DetectLanguage(b []byte) []Result {
-	return DetectLanguageWithOptions(b, DefaultOptions)
+func DetectLanguage(b []byte) language.Tag {
+	return DetectLanguageWithOptions(b, DefaultOptions)[0].Tag
 }
 
 func Train(b []byte) []Trigram {
