@@ -10,17 +10,30 @@ var (
 	BelarusianTag       = language.Make("be")
 	BosnianTag          = language.Make("bs")
 	IrishTag            = language.Make("ga")
+	JavaneseTag         = language.Make("jv")
 	LatinTag            = language.Make("la")
 	LuxembourgishTag    = language.Make("lb")
 	MalteseTag          = language.Make("mt")
+	MyanmarTag          = language.Make("my")
 	NorwegianBokmålTag  = language.Make("nb")
 	NorwegianNynorskTag = language.Make("nn")
+	OriyaTag            = language.Make("or")
+	PunjabiTag          = language.Make("pa")
+	SinhaleseTag        = language.Make("si")
+	SundaneseTag        = language.Make("su")
+	TibetanTag          = language.Make("bo")
 )
 
 var DefaultOptions = Options{
 	Languages: map[*unicode.RangeTable]Languages{
+		unicode.Arabic: {
+			DefaultTag: language.Arabic,
+		},
 		unicode.Armenian: {
 			DefaultTag: language.Armenian,
+		},
+		unicode.Bengali: {
+			DefaultTag: language.Bengali,
 		},
 		unicode.Cyrillic: {
 			Languages: []Language{
@@ -31,6 +44,15 @@ var DefaultOptions = Options{
 				Serbian,
 				Ukrainian,
 			},
+		},
+		unicode.Devanagari: {
+			DefaultTag: language.Hindi,
+		},
+		unicode.Ethiopic: {
+			DefaultTag: language.Amharic,
+		},
+		unicode.Javanese: {
+			DefaultTag: JavaneseTag,
 		},
 		unicode.Latin: {
 			Languages: []Language{
@@ -72,6 +94,60 @@ var DefaultOptions = Options{
 		unicode.Greek: {
 			DefaultTag: language.Greek,
 		},
+		unicode.Gujarati: {
+			DefaultTag: language.Gujarati,
+		},
+		unicode.Gurmukhi: {
+			DefaultTag: PunjabiTag,
+		},
+		unicode.Han: {
+			DefaultTag: language.Chinese,
+		},
+		unicode.Hangul: {
+			DefaultTag: language.Korean,
+		},
+		unicode.Hebrew: {
+			DefaultTag: language.Hebrew,
+		},
+		HiraganaKatakana: {
+			DefaultTag: language.Japanese,
+		},
+		unicode.Kannada: {
+			DefaultTag: language.Kannada,
+		},
+		unicode.Khmer: {
+			DefaultTag: language.Khmer,
+		},
+		unicode.Lao: {
+			DefaultTag: language.Lao,
+		},
+		unicode.Malayalam: {
+			DefaultTag: language.Malayalam,
+		},
+		unicode.Myanmar: {
+			DefaultTag: MyanmarTag,
+		},
+		unicode.Oriya: {
+			DefaultTag: OriyaTag,
+		},
+		unicode.Sinhala: {
+			DefaultTag: SinhaleseTag,
+		},
+		unicode.Sundanese: {
+			DefaultTag: SundaneseTag,
+		},
+		unicode.Tamil: {
+			DefaultTag: language.Tamil,
+		},
+		unicode.Telugu: {
+			DefaultTag: language.Telugu,
+		},
+		unicode.Thai: {
+			DefaultTag: language.Thai,
+		},
+		unicode.Tibetan: {
+			DefaultTag: TibetanTag,
+		},
 	},
 	// https://www.worldatlas.com/articles/the-world-s-most-popular-writing-scripts.html
 	Scripts: []*unicode.RangeTable{
@@ -101,7 +177,6 @@ var DefaultOptions = Options{
 		unicode.Armenian,
 		unicode.Khmer,
 		unicode.Greek,
-		// Lontara
 		unicode.Tibetan,
 		unicode.Georgian,
 	},
