@@ -409,6 +409,7 @@ var _CroatianTrigrams = []Trigram{
 	{'o', '_', 'v'},
 }
 
+// Croatian is a language profile.
 var Croatian = Language {
 	Tag: language.Croatian,
 	Trigrams: _CroatianTrigrams,

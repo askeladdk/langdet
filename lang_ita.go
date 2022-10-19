@@ -409,6 +409,7 @@ var _ItalianTrigrams = []Trigram{
 	{'d', 'i', 's'},
 }
 
+// Italian is a language profile.
 var Italian = Language {
 	Tag: language.Italian,
 	Trigrams: _ItalianTrigrams,

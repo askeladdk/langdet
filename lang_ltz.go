@@ -405,6 +405,7 @@ var _LuxembourgishTrigrams = []Trigram{
 	{'e', 'r', 'k'},
 }
 
+// Luxembourgish is a language profile.
 var Luxembourgish = Language {
 	Tag: LuxembourgishTag,
 	Trigrams: _LuxembourgishTrigrams,

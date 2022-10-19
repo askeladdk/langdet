@@ -409,6 +409,7 @@ var _MacedonianTrigrams = []Trigram{
 	{'в', 'с', 'к'},
 }
 
+// Macedonian is a language profile.
 var Macedonian = Language {
 	Tag: language.Macedonian,
 	Trigrams: _MacedonianTrigrams,

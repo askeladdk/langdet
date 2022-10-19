@@ -405,6 +405,7 @@ var _BelarusianTrigrams = []Trigram{
 	{'м', 'а', 'н'},
 }
 
+// Belarusian is a language profile.
 var Belarusian = Language {
 	Tag: BelarusianTag,
 	Trigrams: _BelarusianTrigrams,

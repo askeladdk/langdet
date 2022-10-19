@@ -405,6 +405,7 @@ var _MalteseTrigrams = []Trigram{
 	{'l', 'm', 'i'},
 }
 
+// Maltese is a language profile.
 var Maltese = Language {
 	Tag: MalteseTag,
 	Trigrams: _MalteseTrigrams,

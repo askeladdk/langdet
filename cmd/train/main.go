@@ -244,7 +244,7 @@ func main() {
 		defer f.Close()
 
 		b, _ := io.ReadAll(f)
-		tgs := langdet.Train(b)
+		tgs := langdet.Train(b, len(b)/2)
 
 		w, err := os.Create(corpus.OutFile)
 		if err != nil {
@@ -271,14 +271,10 @@ func main() {
 		fmt.Fprintln(w, "}")
 		fmt.Fprintln(w)
 
+		fmt.Fprintf(w, "// %s is a language profile.\n", corpus.Name)
 		fmt.Fprintf(w, "var %s = Language {\n", corpus.Name)
 		fmt.Fprintf(w, "\tTag: %s,\n", corpus.Tag)
 		fmt.Fprintf(w, "\tTrigrams: _%sTrigrams,\n", corpus.Name)
-		// fmt.Fprintln(w, "\tTrigrams: []Trigram{")
-		// for _, tg := range tgs[:400] {
-		// 	fmt.Fprintf(w, "\t\t{'%s', '%s', '%s'},\n", string(tg[0]), string(tg[1]), string(tg[2]))
-		// }
-		// fmt.Fprintln(w, "\t},")
 		fmt.Fprintln(w, "}")
 	}
 }

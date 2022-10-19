@@ -409,6 +409,7 @@ var _SlovenianTrigrams = []Trigram{
 	{'u', '_', 'p'},
 }
 
+// Slovenian is a language profile.
 var Slovenian = Language {
 	Tag: language.Slovenian,
 	Trigrams: _SlovenianTrigrams,

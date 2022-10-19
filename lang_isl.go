@@ -409,6 +409,7 @@ var _IcelandicTrigrams = []Trigram{
 	{'g', '_', 'a'},
 }
 
+// Icelandic is a language profile.
 var Icelandic = Language {
 	Tag: language.Icelandic,
 	Trigrams: _IcelandicTrigrams,

@@ -405,6 +405,7 @@ var _IrishTrigrams = []Trigram{
 	{'_', 'f', 'e'},
 }
 
+// Irish is a language profile.
 var Irish = Language {
 	Tag: IrishTag,
 	Trigrams: _IrishTrigrams,

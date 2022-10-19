@@ -405,6 +405,7 @@ var _NorwegianNynorskTrigrams = []Trigram{
 	{'r', 'd', 'e'},
 }
 
+// NorwegianNynorsk is a language profile.
 var NorwegianNynorsk = Language {
 	Tag: NorwegianNynorskTag,
 	Trigrams: _NorwegianNynorskTrigrams,

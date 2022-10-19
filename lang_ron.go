@@ -409,6 +409,7 @@ var _RomanianTrigrams = []Trigram{
 	{'i', 'c', 'ă'},
 }
 
+// Romanian is a language profile.
 var Romanian = Language {
 	Tag: language.Romanian,
 	Trigrams: _RomanianTrigrams,

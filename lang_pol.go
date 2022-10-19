@@ -409,6 +409,7 @@ var _PolishTrigrams = []Trigram{
 	{'_', 'l', 'u'},
 }
 
+// Polish is a language profile.
 var Polish = Language {
 	Tag: language.Polish,
 	Trigrams: _PolishTrigrams,

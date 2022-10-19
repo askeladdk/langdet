@@ -409,6 +409,7 @@ var _SpanishTrigrams = []Trigram{
 	{'r', 'a', 'c'},
 }
 
+// Spanish is a language profile.
 var Spanish = Language {
 	Tag: language.Spanish,
 	Trigrams: _SpanishTrigrams,

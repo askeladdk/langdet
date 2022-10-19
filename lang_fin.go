@@ -409,6 +409,7 @@ var _FinnishTrigrams = []Trigram{
 	{'l', 'i', 't'},
 }
 
+// Finnish is a language profile.
 var Finnish = Language {
 	Tag: language.Finnish,
 	Trigrams: _FinnishTrigrams,

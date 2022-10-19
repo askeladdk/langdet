@@ -409,6 +409,7 @@ var _DanishTrigrams = []Trigram{
 	{'m', 'u', 'n'},
 }
 
+// Danish is a language profile.
 var Danish = Language {
 	Tag: language.Danish,
 	Trigrams: _DanishTrigrams,

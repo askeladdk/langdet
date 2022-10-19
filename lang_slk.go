@@ -409,6 +409,7 @@ var _SlovakTrigrams = []Trigram{
 	{'_', 'z', 'd'},
 }
 
+// Slovak is a language profile.
 var Slovak = Language {
 	Tag: language.Slovak,
 	Trigrams: _SlovakTrigrams,
