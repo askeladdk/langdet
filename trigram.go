@@ -6,16 +6,42 @@ import (
 	"unicode/utf8"
 )
 
+// Trigram is a tuple of three unicode runes.
 type Trigram [3]rune
+
+// MarshalText implements encoding.TextMarshaler.
+func (t Trigram) MarshalText() ([]byte, error) {
+	n0 := utf8.RuneLen(t[0])
+	n1 := utf8.RuneLen(t[1])
+	n2 := utf8.RuneLen(t[2])
+	b := make([]byte, n0+n1+n2)
+	utf8.EncodeRune(b, t[0])
+	utf8.EncodeRune(b[n0:], t[1])
+	utf8.EncodeRune(b[n0+n1:], t[2])
+	return b, nil
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (t *Trigram) UnmarshalText(b []byte) error {
+	var n int
+	t[0], n = utf8.DecodeRune(b)
+	b = b[n:]
+	t[1], n = utf8.DecodeRune(b)
+	b = b[n:]
+	t[2], _ = utf8.DecodeRune(b)
+	return nil
+}
+
+// String implements fmt.Stringer.
+func (t Trigram) String() string {
+	b, _ := t.MarshalText()
+	return string(b)
+}
 
 func (t *Trigram) shift(r rune) {
 	t[0] = t[1]
 	t[1] = t[2]
 	t[2] = r
-}
-
-func (t Trigram) String() string {
-	return string([]rune(t[:]))
 }
 
 func trigramLess(a, b Trigram) bool {
@@ -136,4 +162,12 @@ func min(a, b int) int {
 		return a
 	}
 	return b
+}
+
+// Train counts all trigrams in b and orders them by frequency.
+// Use parameter nTrigramsEstimate to preallocate an expected number of trigrams.
+func Train(b []byte, nTrigramsEstimate int) []Trigram {
+	trigrams := make(map[Trigram]int, nTrigramsEstimate)
+	countTrigrams(b, trigrams)
+	return rankTrigrams(trigrams)
 }

@@ -1,6 +1,7 @@
 package langdet
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -116,5 +117,65 @@ func TestTrigramDistance(t *testing.T) {
 				t.Error("got", dist, "but expected", testcase.Distance)
 			}
 		})
+	}
+}
+
+func TestTrain(t *testing.T) {
+	text := "How much would a woodchunk chunk if a woodchunk could chunk wood?"
+	got := Train([]byte(text), 100)
+
+	expected := []Trigram{
+		trigram("_wo"),
+		trigram("chu"),
+		trigram("hun"),
+		trigram("nk_"),
+		trigram("unk"),
+		trigram("ood"),
+		trigram("woo"),
+		trigram("_a_"),
+		trigram("_ch"),
+		trigram("a_w"),
+		trigram("dch"),
+		trigram("k_c"),
+		trigram("ld_"),
+		trigram("odc"),
+		trigram("oul"),
+		trigram("uld"),
+		trigram("__h"),
+		trigram("_co"),
+		trigram("_ho"),
+		trigram("_if"),
+		trigram("_mu"),
+		trigram("ch_"),
+		trigram("cou"),
+		trigram("d_a"),
+		trigram("d_c"),
+		trigram("f_a"),
+		trigram("h_w"),
+		trigram("how"),
+		trigram("if_"),
+		trigram("k_i"),
+		trigram("k_w"),
+		trigram("muc"),
+		trigram("od_"),
+		trigram("ow_"),
+		trigram("uch"),
+		trigram("w_m"),
+		trigram("wou"),
+	}
+
+	if !reflect.DeepEqual(got, expected) {
+		t.Error()
+	}
+}
+
+func TestTrigramTextMarshal(t *testing.T) {
+	tr0 := Trigram{'a', 'b', 'c'}
+	b, _ := tr0.MarshalText()
+	var tr1 Trigram
+	_ = tr1.UnmarshalText(b)
+
+	if tr0 != tr1 {
+		t.Error()
 	}
 }

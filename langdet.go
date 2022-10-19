@@ -103,9 +103,3 @@ func DetectLanguageWithOptions(b []byte, options Options) []Result {
 func DetectLanguage(b []byte) language.Tag {
 	return DetectLanguageWithOptions(b, DefaultOptions)[0].Tag
 }
-
-func Train(b []byte) []Trigram {
-	trigrams := make(map[Trigram]int, 300)
-	countTrigrams(b, trigrams)
-	return rankTrigrams(trigrams)
-}
