@@ -54,20 +54,11 @@ func trigramLess(a, b Trigram) bool {
 	return a[0] < b[0]
 }
 
-func countTrigrams(in []byte, freqs map[Trigram]int) {
+func countTrigrams(s string, counts map[Trigram]int) {
 	var prev rune
 	t := Trigram{'_', '_', '_'}
 
-	for {
-		r, sz := utf8.DecodeRune(in)
-		in = in[sz:]
-
-		if sz == 0 {
-			t.shift('_')
-			freqs[t]++
-			return
-		}
-
+	for _, r := range s {
 		switch {
 		case unicode.IsPunct(r):
 			if r == '.' {
@@ -78,20 +69,23 @@ func countTrigrams(in []byte, freqs map[Trigram]int) {
 		case unicode.IsLetter(r):
 			if prev == '_' {
 				t.shift('_')
-				freqs[t]++
+				counts[t]++
 			}
 
 			r = unicode.ToLower(r)
 			t.shift(r)
-			freqs[t]++
+			counts[t]++
 		}
 
 		prev = r
 	}
+
+	t.shift('_')
+	counts[t]++
 }
 
 type trigramSorter struct {
-	freqs  map[Trigram]int
+	counts map[Trigram]int
 	ranked []Trigram
 }
 
@@ -102,8 +96,8 @@ func (ts trigramSorter) Len() int {
 func (ts trigramSorter) Less(i, j int) bool {
 	ti := ts.ranked[i]
 	tj := ts.ranked[j]
-	ci := ts.freqs[ti]
-	cj := ts.freqs[tj]
+	ci := ts.counts[ti]
+	cj := ts.counts[tj]
 
 	// sort equal counts lexicographically
 	if ci == cj {
@@ -118,13 +112,13 @@ func (ts trigramSorter) Swap(i, j int) {
 	ts.ranked[i], ts.ranked[j] = ts.ranked[j], ts.ranked[i]
 }
 
-func rankTrigrams(freqs map[Trigram]int) []Trigram {
+func rankTrigrams(counts map[Trigram]int) []Trigram {
 	sorter := trigramSorter{
-		freqs:  freqs,
-		ranked: make([]Trigram, 0, len(freqs)),
+		counts: counts,
+		ranked: make([]Trigram, 0, len(counts)),
 	}
 
-	for k := range freqs {
+	for k := range counts {
 		sorter.ranked = append(sorter.ranked, k)
 	}
 
@@ -164,10 +158,10 @@ func min(a, b int) int {
 	return b
 }
 
-// Train counts all trigrams in b and orders them by frequency.
-// Use parameter nTrigramsEstimate to preallocate an expected number of trigrams.
-func Train(b []byte, nTrigramsEstimate int) []Trigram {
-	trigrams := make(map[Trigram]int, nTrigramsEstimate)
-	countTrigrams(b, trigrams)
+// Train counts all trigrams in s and orders them by frequency.
+func Train(s string) []Trigram {
+	n := utf8.RuneCountInString(s)
+	trigrams := make(map[Trigram]int, n/2)
+	countTrigrams(s, trigrams)
 	return rankTrigrams(trigrams)
 }

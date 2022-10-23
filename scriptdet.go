@@ -4,25 +4,19 @@ package langdet
 
 import (
 	"unicode"
-	"unicode/utf8"
 )
 
+// HiraganaKatakana is the unicode set of Japanese characters.
 var HiraganaKatakana = &unicode.RangeTable{
 	R16: append(unicode.Hiragana.R16, unicode.Katakana.R16...),
 	R32: append(unicode.Hiragana.R32, unicode.Katakana.R32...),
 }
 
-func DetectScript(b []byte, scripts []*unicode.RangeTable) *unicode.RangeTable {
+// DetectScript detects the dominant writing script of s.
+func DetectScript(s string, scripts []*unicode.RangeTable) *unicode.RangeTable {
 	counts := make([]int, len(scripts))
 
-	for {
-		r, sz := utf8.DecodeRune(b)
-		b = b[sz:]
-
-		if sz == 0 {
-			break
-		}
-
+	for _, r := range s {
 		if !unicode.IsLetter(r) {
 			continue
 		}

@@ -409,7 +409,7 @@ var _HungarianTrigrams = []Trigram{
 	{'k', 'a', 'p'},
 }
 
-// Hungarian is a language profile.
+// Hungarian profiles the Hungarian language.
 var Hungarian = Language {
 	Tag: language.Hungarian,
 	Trigrams: _HungarianTrigrams,

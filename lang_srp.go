@@ -409,7 +409,7 @@ var _SerbianTrigrams = []Trigram{
 	{'м', '_', 'д'},
 }
 
-// Serbian is a language profile.
+// Serbian profiles the Serbian language.
 var Serbian = Language {
 	Tag: language.Serbian,
 	Trigrams: _SerbianTrigrams,

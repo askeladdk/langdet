@@ -78,7 +78,7 @@ func TestDetectScript(t *testing.T) {
 		},
 	} {
 		t.Run(testcase.Name, func(t *testing.T) {
-			got := DetectScript([]byte(testcase.Text), DefaultOptions.Scripts)
+			got := DetectScript(testcase.Text, DefaultOptions.Scripts)
 			if got != testcase.Script {
 				t.Error("got", got, "but expected", testcase.Script)
 			}

@@ -409,7 +409,7 @@ var _LithuanianTrigrams = []Trigram{
 	{'č', 'i', 'ų'},
 }
 
-// Lithuanian is a language profile.
+// Lithuanian profiles the Lithuanian language.
 var Lithuanian = Language {
 	Tag: language.Lithuanian,
 	Trigrams: _LithuanianTrigrams,

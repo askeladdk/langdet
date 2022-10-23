@@ -405,7 +405,7 @@ var _LatinTrigrams = []Trigram{
 	{'n', 'd', 'e'},
 }
 
-// Latin is a language profile.
+// Latin profiles the Latin language.
 var Latin = Language {
 	Tag: LatinTag,
 	Trigrams: _LatinTrigrams,

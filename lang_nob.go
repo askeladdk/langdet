@@ -405,7 +405,7 @@ var _NorwegianBokmålTrigrams = []Trigram{
 	{'r', 'd', 'e'},
 }
 
-// NorwegianBokmål is a language profile.
+// NorwegianBokmål profiles the NorwegianBokmål language.
 var NorwegianBokmål = Language {
 	Tag: NorwegianBokmålTag,
 	Trigrams: _NorwegianBokmålTrigrams,

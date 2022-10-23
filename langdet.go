@@ -1,8 +1,10 @@
+// Package langdet detects natural languages in text.
 package langdet
 
 import (
 	"sort"
 	"unicode"
+	"unicode/utf8"
 
 	"golang.org/x/text/language"
 )
@@ -67,13 +69,12 @@ func (rs resultSorter) Swap(i, j int) {
 	rs[i], rs[j] = rs[j], rs[i]
 }
 
-// DetectLanguageWithOptions detects the language of b configured by options
-// and returning a set of candidate languages ordered by confidence level.
-//
-// DetectLanguageWithOptions always returns at least one result.
-func DetectLanguageWithOptions(b []byte, options Options) []Result {
+// DetectLanguageWithOptions detects the language of s configured by options.
+// It returns a set of candidate languages ordered by confidence level.
+// At least one result is always returned.
+func DetectLanguageWithOptions(s string, options Options) []Result {
 	// detect the script
-	script := DetectScript(b, options.Scripts)
+	script := DetectScript(s, options.Scripts)
 	if script == nil {
 		return []Result{{}}
 	}
@@ -90,17 +91,17 @@ func DetectLanguageWithOptions(b []byte, options Options) []Result {
 	}
 
 	// build and rank the trigrams of the document
-	doctri := make(map[Trigram]int, len(b)/2)
-	countTrigrams(b, doctri)
-	ranked := rankTrigrams(doctri)
+	trigrams := make(map[Trigram]int, utf8.RuneCountInString(s)/2)
+	countTrigrams(s, trigrams)
+	ranked := rankTrigrams(trigrams)
 	for i, r := range ranked { // map the rankings
-		doctri[r] = i
+		trigrams[r] = i
 	}
 
 	// compute the distance to each language in the set
 	res := make([]Result, len(langs.Languages))
 	for i, lang := range langs.Languages {
-		dist := distance(lang.Trigrams, doctri)
+		dist := distance(lang.Trigrams, trigrams)
 		res[i].Confidence = confidence(lang.Trigrams, dist)
 		res[i].Tag = lang.Tag
 	}
@@ -130,6 +131,6 @@ func DetectLanguageWithOptions(b []byte, options Options) []Result {
 
 // DetectLanguage is a shorthand that calls DetectLanguageWithOptions
 // with the default options and returns the best detected language.
-func DetectLanguage(b []byte) language.Tag {
-	return DetectLanguageWithOptions(b, DefaultOptions)[0].Tag
+func DetectLanguage(s string) language.Tag {
+	return DetectLanguageWithOptions(s, DefaultOptions)[0].Tag
 }

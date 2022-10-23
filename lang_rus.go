@@ -409,7 +409,7 @@ var _RussianTrigrams = []Trigram{
 	{'а', 'л', 'о'},
 }
 
-// Russian is a language profile.
+// Russian profiles the Russian language.
 var Russian = Language {
 	Tag: language.Russian,
 	Trigrams: _RussianTrigrams,

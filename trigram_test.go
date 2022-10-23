@@ -48,7 +48,7 @@ func TestCountTrigrams(t *testing.T) {
 
 	counts := make(map[Trigram]int, 300)
 
-	countTrigrams([]byte(test), counts)
+	countTrigrams(test, counts)
 
 	if len(counts) != len(expected) {
 		t.Error("wrong number of trigrams")
@@ -122,7 +122,7 @@ func TestTrigramDistance(t *testing.T) {
 
 func TestTrain(t *testing.T) {
 	text := "How much would a woodchunk chunk if a woodchunk could chunk wood?"
-	got := Train([]byte(text), 100)
+	got := Train(text)
 
 	expected := []Trigram{
 		trigram("_wo"),

@@ -405,7 +405,7 @@ var _BosnianTrigrams = []Trigram{
 	{'v', 'a', 't'},
 }
 
-// Bosnian is a language profile.
+// Bosnian profiles the Bosnian language.
 var Bosnian = Language {
 	Tag: BosnianTag,
 	Trigrams: _BosnianTrigrams,

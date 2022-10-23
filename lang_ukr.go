@@ -409,7 +409,7 @@ var _UkrainianTrigrams = []Trigram{
 	{'р', 'а', '_'},
 }
 
-// Ukrainian is a language profile.
+// Ukrainian profiles the Ukrainian language.
 var Ukrainian = Language {
 	Tag: language.Ukrainian,
 	Trigrams: _UkrainianTrigrams,

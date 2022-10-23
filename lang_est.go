@@ -409,7 +409,7 @@ var _EstonianTrigrams = []Trigram{
 	{'s', 'e', 'i'},
 }
 
-// Estonian is a language profile.
+// Estonian profiles the Estonian language.
 var Estonian = Language {
 	Tag: language.Estonian,
 	Trigrams: _EstonianTrigrams,

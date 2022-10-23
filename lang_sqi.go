@@ -409,7 +409,7 @@ var _AlbanianTrigrams = []Trigram{
 	{'r', 'r', 'ë'},
 }
 
-// Albanian is a language profile.
+// Albanian profiles the Albanian language.
 var Albanian = Language {
 	Tag: language.Albanian,
 	Trigrams: _AlbanianTrigrams,

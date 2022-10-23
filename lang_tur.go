@@ -409,7 +409,7 @@ var _TurkishTrigrams = []Trigram{
 	{'d', 'u', '_'},
 }
 
-// Turkish is a language profile.
+// Turkish profiles the Turkish language.
 var Turkish = Language {
 	Tag: language.Turkish,
 	Trigrams: _TurkishTrigrams,

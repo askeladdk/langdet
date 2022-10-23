@@ -409,7 +409,7 @@ var _GermanTrigrams = []Trigram{
 	{'r', '_', 'z'},
 }
 
-// German is a language profile.
+// German profiles the German language.
 var German = Language {
 	Tag: language.German,
 	Trigrams: _GermanTrigrams,

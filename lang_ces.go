@@ -409,7 +409,7 @@ var _CzechTrigrams = []Trigram{
 	{'e', 'l', 'e'},
 }
 
-// Czech is a language profile.
+// Czech profiles the Czech language.
 var Czech = Language {
 	Tag: language.Czech,
 	Trigrams: _CzechTrigrams,

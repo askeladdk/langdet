@@ -409,7 +409,7 @@ var _SwedishTrigrams = []Trigram{
 	{'e', 'l', '_'},
 }
 
-// Swedish is a language profile.
+// Swedish profiles the Swedish language.
 var Swedish = Language {
 	Tag: language.Swedish,
 	Trigrams: _SwedishTrigrams,

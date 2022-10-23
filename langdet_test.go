@@ -51,7 +51,7 @@ func TestDetectParagraphs(t *testing.T) {
 		{language.Ukrainian, `Інтерне́т (від англ. Internet), міжнародна комп'ютерна мережа, всемере́жжя[1][2], (дослівно) міжмере́жа[3], міжмере́жжя[4][5][6][7] — всесвітня система сполучених комп'ютерних мереж, що заснована на комплекті Інтернет-протоколів. Інтернет також називають мережею мереж, бо він складається з мільйонів локальних і глобальних приватних, публічних, академічних, ділових і урядових мереж, пов'язаних між собою з використанням різноманітних дротових`},
 	} {
 		t.Run(testcase.Tag.String(), func(t *testing.T) {
-			lang := DetectLanguage([]byte(testcase.Paragraph))
+			lang := DetectLanguage(testcase.Paragraph)
 			if lang != testcase.Tag {
 				t.Error("got", lang, "but expected", testcase.Tag)
 			}

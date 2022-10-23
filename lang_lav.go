@@ -409,7 +409,7 @@ var _LatvianTrigrams = []Trigram{
 	{'p', 'e', 'r'},
 }
 
-// Latvian is a language profile.
+// Latvian profiles the Latvian language.
 var Latvian = Language {
 	Tag: language.Latvian,
 	Trigrams: _LatvianTrigrams,

@@ -409,7 +409,7 @@ var _BulgarianTrigrams = []Trigram{
 	{'о', 'т', 'и'},
 }
 
-// Bulgarian is a language profile.
+// Bulgarian profiles the Bulgarian language.
 var Bulgarian = Language {
 	Tag: language.Bulgarian,
 	Trigrams: _BulgarianTrigrams,

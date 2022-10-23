@@ -409,7 +409,7 @@ var _PortugueseTrigrams = []Trigram{
 	{'g', 'o', '_'},
 }
 
-// Portuguese is a language profile.
+// Portuguese profiles the Portuguese language.
 var Portuguese = Language {
 	Tag: language.Portuguese,
 	Trigrams: _PortugueseTrigrams,

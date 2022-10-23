@@ -409,7 +409,7 @@ var _FrenchTrigrams = []Trigram{
 	{'r', 't', 'e'},
 }
 
-// French is a language profile.
+// French profiles the French language.
 var French = Language {
 	Tag: language.French,
 	Trigrams: _FrenchTrigrams,

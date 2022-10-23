@@ -409,7 +409,7 @@ var _DutchTrigrams = []Trigram{
 	{'d', 'o', 'e'},
 }
 
-// Dutch is a language profile.
+// Dutch profiles the Dutch language.
 var Dutch = Language {
 	Tag: language.Dutch,
 	Trigrams: _DutchTrigrams,
