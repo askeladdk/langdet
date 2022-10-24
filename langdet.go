@@ -42,7 +42,7 @@ type Options struct {
 
 	// MinRelConfidence is the minimum confidence difference
 	// that must be met between detected languages.
-	// Languages that do not meet the mimimum are filtered from the result.
+	// Languages that do not meet the minimum are filtered from the result.
 	MinRelConfidence float64
 }
 
