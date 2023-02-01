@@ -2,6 +2,10 @@
 
 package langdet
 
+import (
+	"golang.org/x/text/language"
+)
+
 var _NorwegianNynorskTrigrams = []Trigram{
 	{'e', 'r', '_'},
 	{'_', 'd', 'e'},
@@ -407,6 +411,6 @@ var _NorwegianNynorskTrigrams = []Trigram{
 
 // NorwegianNynorsk profiles the NorwegianNynorsk language.
 var NorwegianNynorsk = Language {
-	Tag: NorwegianNynorskTag,
+	Tag: language.Norwegian,
 	Trigrams: _NorwegianNynorskTrigrams,
 }

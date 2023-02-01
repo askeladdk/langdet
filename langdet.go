@@ -9,6 +9,8 @@ import (
 	"golang.org/x/text/language"
 )
 
+//go:generate go run ./cmd/train/main.go
+
 // Language profiles a natural language.
 type Language struct {
 	// Tag is the BCP 47 language tag.

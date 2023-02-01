@@ -8,19 +8,17 @@ import (
 
 // Tags for languages missing from golang.org/x/text/language.
 var (
-	BelarusianTag       = language.Make("be")
-	BosnianTag          = language.Make("bs")
-	IrishTag            = language.Make("ga")
-	JavaneseTag         = language.Make("jv")
-	LatinTag            = language.Make("la")
-	LuxembourgishTag    = language.Make("lb")
-	MalteseTag          = language.Make("mt")
-	MyanmarTag          = language.Make("my")
-	NorwegianBokmålTag  = language.Make("nb")
-	NorwegianNynorskTag = language.Make("nn")
-	OriyaTag            = language.Make("or")
-	SundaneseTag        = language.Make("su")
-	TibetanTag          = language.Make("bo")
+	BelarusianTag    = language.Make("be")
+	BosnianTag       = language.Make("bs")
+	IrishTag         = language.Make("ga")
+	JavaneseTag      = language.Make("jv")
+	LatinTag         = language.Make("la")
+	LuxembourgishTag = language.Make("lb")
+	MalteseTag       = language.Make("mt")
+	MyanmarTag       = language.Make("my")
+	OriyaTag         = language.Make("or")
+	SundaneseTag     = language.Make("su")
+	TibetanTag       = language.Make("bo")
 )
 
 // DefaultOptions is a default set of options that detects

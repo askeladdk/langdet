@@ -89,14 +89,14 @@ var corpora = []struct {
 	},
 	{
 		Name:       "NorwegianBokmål",
-		Tag:        "NorwegianBokmålTag",
+		Tag:        "language.Norwegian",
 		SourceFile: "nob_newscrawl_2019_10K.tar.gz",
 		CorpusFile: "corpora/nob.txt",
 		OutFile:    "lang_nob.go",
 	},
 	{
 		Name:       "NorwegianNynorsk",
-		Tag:        "NorwegianNynorskTag",
+		Tag:        "language.Norwegian",
 		SourceFile: "nno-no_web_2020_10K.tar.gz",
 		CorpusFile: "corpora/nno.txt",
 		OutFile:    "lang_nno.go",
