@@ -19,8 +19,6 @@ var (
 	NorwegianBokmålTag  = language.Make("nb")
 	NorwegianNynorskTag = language.Make("nn")
 	OriyaTag            = language.Make("or")
-	PunjabiTag          = language.Make("pa")
-	SinhaleseTag        = language.Make("si")
 	SundaneseTag        = language.Make("su")
 	TibetanTag          = language.Make("bo")
 )
@@ -101,7 +99,7 @@ var DefaultOptions = Options{
 			DefaultTag: language.Gujarati,
 		},
 		unicode.Gurmukhi: {
-			DefaultTag: PunjabiTag,
+			DefaultTag: language.Punjabi,
 		},
 		unicode.Han: {
 			DefaultTag: language.Chinese,
@@ -134,7 +132,7 @@ var DefaultOptions = Options{
 			DefaultTag: OriyaTag,
 		},
 		unicode.Sinhala: {
-			DefaultTag: SinhaleseTag,
+			DefaultTag: language.Sinhala,
 		},
 		unicode.Sundanese: {
 			DefaultTag: SundaneseTag,
