@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/askeladdk/langdet?status.png)](https://godoc.org/github.com/askeladdk/langdet)
 [![Go Report Card](https://goreportcard.com/badge/github.com/askeladdk/langdet)](https://goreportcard.com/report/github.com/askeladdk/langdet)
+[![Coverage Status](https://coveralls.io/repos/github/askeladdk/langdet/badge.svg?branch=master)](https://coveralls.io/github/askeladdk/langdet?branch=master)
 
 ## Overview
 
